@@ -19,7 +19,7 @@ export default function Home() {
         <PoemGenerator />
       </main>
       <footer className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-muted-foreground text-sm">
-        <p>created by Sahil Tambadkar</p>
+        <p>Created By Sahil Tambadkar</p>
       </footer>
     </div>
   );
