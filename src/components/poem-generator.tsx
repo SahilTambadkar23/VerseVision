@@ -6,7 +6,7 @@ import {
   UploadCloud,
   Wand2,
   Sparkles,
-  Share2,
+  Copy,
   Download,
   Loader2,
 } from 'lucide-react';
@@ -102,30 +102,13 @@ export function PoemGenerator() {
     URL.revokeObjectURL(url);
   };
 
-  const handleSharePoem = async () => {
+  const handleCopyPoem = () => {
     if (!poem) return;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'My Poem from VerseVision',
-          text: poem,
-        });
-      } catch (error) {
-        console.error('Error sharing:', error);
-        // Fallback to clipboard if sharing fails
-        navigator.clipboard.writeText(poem);
-        toast({
-            title: 'Copied to Clipboard',
-            description: 'Sharing was not available, so your poem has been copied to your clipboard.',
-        });
-      }
-    } else {
-        navigator.clipboard.writeText(poem);
-        toast({
-            title: 'Copied to Clipboard',
-            description: 'Your poem has been copied to your clipboard.',
-        });
-    }
+    navigator.clipboard.writeText(poem);
+    toast({
+        title: 'Copied to Clipboard',
+        description: 'Your poem has been copied to your clipboard.',
+    });
   };
 
   return (
@@ -203,9 +186,9 @@ export function PoemGenerator() {
               Generate Poem
             </Button>
             <div className='flex gap-2'>
-              <Button onClick={handleSharePoem} variant="outline" disabled={!poem}>
-                <Share2 className="mr-2 h-4 w-4" />
-                Share
+              <Button onClick={handleCopyPoem} variant="outline" disabled={!poem}>
+                <Copy className="mr-2 h-4 w-4" />
+                Copy
               </Button>
               <Button onClick={handleSavePoem} variant="outline" disabled={!poem}>
                 <Download className="mr-2 h-4 w-4" />
