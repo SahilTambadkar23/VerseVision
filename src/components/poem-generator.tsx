@@ -112,6 +112,12 @@ export function PoemGenerator() {
         });
       } catch (error) {
         console.error('Error sharing:', error);
+        // Fallback to clipboard if sharing fails
+        navigator.clipboard.writeText(poem);
+        toast({
+            title: 'Copied to Clipboard',
+            description: 'Sharing was not available, so your poem has been copied to your clipboard.',
+        });
       }
     } else {
         navigator.clipboard.writeText(poem);
